@@ -25,7 +25,6 @@
 ;  L. Adamson leaf@dizzydragon.net
 ;
 
-;  Modified to support latest cc65 by thatmightyguy
 
     .export        _init, _exit
     .import        _main

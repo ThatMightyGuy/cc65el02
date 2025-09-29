@@ -1,3 +1,15 @@
+# STOP! Did you mean [cc65/cc65](https://github.com/cc65/cc65)?
+This is the repo for cc65el02, a fork of cc65 targeting RedPower 2 computers.
+
+I will not fix anything unrelated to 65el02,
+and using this project for anything but 65el02 is **not recommended.**
+
+This project would've been impossible without RPC/8e code from [steventroughtonsmith/rpc8e-cc65](https://github.com/steventroughtonsmith/rpc8e-cc65)
+
+Do you think you're in the right place?
+
+## *Good!*
+
 The cc65 cross-compiler suite
 =============================
 
