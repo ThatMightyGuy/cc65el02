@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "exprdesc.h": "c",
-        "opc6502dtv.h": "c",
-        "opc6502.h": "c",
-        "opc45gs02.h": "c"
-    }
-}
