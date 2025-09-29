@@ -58,6 +58,7 @@ typedef enum {
     CPU_6502DTV,                /* CPU_6502 + DTV extra and illegal opcodes */
     CPU_65SC02,                 /* the original CMOS instruction set */
     CPU_65C02,                  /* CMOS with Rockwell extensions */
+    CPU_65EL02,                 /* CPU of RPC8/e */
     CPU_65816,
     CPU_SWEET16,
     CPU_HUC6280,                /* Used in PC engine */
@@ -77,6 +78,7 @@ enum {
     CPU_ISET_6502DTV    = 1 << CPU_6502DTV,
     CPU_ISET_65SC02     = 1 << CPU_65SC02,
     CPU_ISET_65C02      = 1 << CPU_65C02,
+    CPU_ISET_65EL02     = 1 << CPU_65EL02,
     CPU_ISET_65816      = 1 << CPU_65816,
     CPU_ISET_SWEET16    = 1 << CPU_SWEET16,
     CPU_ISET_HUC6280    = 1 << CPU_HUC6280,

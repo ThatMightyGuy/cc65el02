@@ -248,6 +248,7 @@ typedef enum token_t {
     TOK_PC02,
     TOK_PCE02,
     TOK_PDTV,
+    TOK_PEL02,
     TOK_PM740,
     TOK_POPCHARMAP,
     TOK_POPCPU,

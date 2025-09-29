@@ -40,6 +40,8 @@ the [cc65 web site](https://cc65.github.io):
 | Watara                  | Watura/QuickShot Supervision        |
 | Synertek                | SYM-1                               |
 | USSR                    | Agat-7/9                            |
+| Eloraam                 | RPC/8e (RedPower 2)                 |
+
 
 A generic configuration to adapt cc65 to new targets is also around.
 

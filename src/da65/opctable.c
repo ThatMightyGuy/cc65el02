@@ -77,6 +77,7 @@ void SetOpcTable (cpu_t CPU)
         case CPU_6502DTV: OpcTable = OpcTable_6502DTV;  break;
         case CPU_65SC02:  OpcTable = OpcTable_65SC02;   break;
         case CPU_65C02:   OpcTable = OpcTable_65C02;    break;
+        // case CPU_65EL02:  OpcTable = OpcTable_65EL02;   break;
         case CPU_W65C02:  OpcTable = OpcTable_W65C02;   break;
         case CPU_65CE02:  OpcTable = OpcTable_65CE02;   break;
         case CPU_65816:   OpcTable = OpcTable_65816;    break;

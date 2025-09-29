@@ -318,6 +318,10 @@ static void SetSys (const char* Sys)
             DefineNumericMacro ("__RP6502__", 1);
             break;
 
+        case TGT_RPC8E:
+            DefineNumericMacro ("__RPC8E__", 1);
+            break;
+
         case TGT_AGAT:
             DefineNumericMacro ("__AGAT__", 1);
             break;
@@ -374,6 +378,10 @@ static void DefineCpuMacros (void)
             DefineNumericMacro ("__CPU_65C02__", 1);
             break;
 
+        case CPU_65EL02:
+            DefineNumericMacro ("__CPU_65EL02__", 1);
+            break;
+
         case CPU_65CE02:
             DefineNumericMacro ("__CPU_65CE02__", 1);
             break;
@@ -411,6 +419,7 @@ static void DefineCpuMacros (void)
     DefineNumericMacro ("__CPU_ISET_6502DTV__", CPU_ISET_6502DTV);
     DefineNumericMacro ("__CPU_ISET_65SC02__", CPU_ISET_65SC02);
     DefineNumericMacro ("__CPU_ISET_65C02__", CPU_ISET_65C02);
+    DefineNumericMacro ("__CPU_ISET_65EL02__", CPU_ISET_65EL02);
     DefineNumericMacro ("__CPU_ISET_W65C02__", CPU_ISET_W65C02);
     DefineNumericMacro ("__CPU_ISET_65CE02__", CPU_ISET_65CE02);
     DefineNumericMacro ("__CPU_ISET_65816__", CPU_ISET_65816);

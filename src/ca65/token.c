@@ -242,6 +242,7 @@ static const TokDescEntry TokDesc[] = {
     { ".PC02"                           },
     { ".PCE02"                          },
     { ".PDTV"                           },
+    { ".PEL02"                          },
     { ".PM740"                          },
     { ".POPCHARMAP"                     },
     { ".POPCPU"                         },

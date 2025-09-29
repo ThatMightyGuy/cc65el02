@@ -53,6 +53,7 @@ TARGETS = agat         \
           osic1p       \
           pce          \
           rp6502       \
+          rpc8e        \
           sim6502      \
           sim65c02     \
           supervision  \

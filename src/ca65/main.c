@@ -210,6 +210,7 @@ static void DefineCpuSymbols (void)
     NewSymbol ("CPU_ISET_6502DTV", CPU_ISET_6502DTV);
     NewSymbol ("CPU_ISET_65SC02", CPU_ISET_65SC02);
     NewSymbol ("CPU_ISET_65C02", CPU_ISET_65C02);
+    NewSymbol ("CPU_ISET_65EL02", CPU_ISET_65EL02);
     NewSymbol ("CPU_ISET_65816", CPU_ISET_65816);
     NewSymbol ("CPU_ISET_SWEET16", CPU_ISET_SWEET16);
     NewSymbol ("CPU_ISET_HUC6280", CPU_ISET_HUC6280);
@@ -228,6 +229,7 @@ static void DefineCpuSymbols (void)
     NewSymbol ("CPU_6502DTV", CPUIsets[CPU_6502DTV]);
     NewSymbol ("CPU_65SC02", CPUIsets[CPU_65SC02]);
     NewSymbol ("CPU_65C02", CPUIsets[CPU_65C02]);
+    NewSymbol ("CPU_65EL02", CPUIsets[CPU_65EL02]);
     NewSymbol ("CPU_65816", CPUIsets[CPU_65816]);
     NewSymbol ("CPU_SWEET16", CPUIsets[CPU_SWEET16]);
     NewSymbol ("CPU_HUC6280", CPUIsets[CPU_HUC6280]);
@@ -400,6 +402,10 @@ static void SetSys (const char* Sys)
 
         case TGT_RP6502:
             NewSymbol ("__RP6502__", 1);
+            break;
+
+        case TGT_RPC8E:
+            NewSymbol ("__RPC8E__", 1);
             break;
 
         case TGT_AGAT:

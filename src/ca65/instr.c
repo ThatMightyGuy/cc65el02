@@ -151,6 +151,8 @@ static void PutRTS (const InsDesc* Ins attribute ((unused)));
 static void PutAll (const InsDesc* Ins);
 /* Handle all other instructions */
 
+static void PutMMUel02 (const InsDesc* Ins);
+
 static void Put4510 (const InsDesc* Ins);
 /* Handle instructions of 4510 not matching any EATab */
 
@@ -1606,6 +1608,154 @@ static const struct {
     }
 };
 
+/* Instruction table for the 65el02 (65C02, 65816 and own extensions) */
+static const struct {
+    unsigned Count;
+    InsDesc  Ins[135];
+} InsTab65el02 = {
+    /* CAUTION: table must be sorted for bsearch */
+    sizeof (InsTab65el02.Ins) / sizeof (InsTab65el02.Ins[0]),
+    {
+/* BEGIN SORTED.SH */
+        { "ADC",  0x30b8f6fc, 0x60, 0, PutAll },
+        { "AND",  0x30b8f6fc, 0x20, 0, PutAll },
+        { "ASL",  0x000006e, 0x02, 1, PutAll },
+        { "BBR0", 0x0000000, 0x0F, 0, PutBitBranch },
+        { "BBR1", 0x0000000, 0x1F, 0, PutBitBranch },
+        { "BBR2", 0x0000000, 0x2F, 0, PutBitBranch },
+        { "BBR3", 0x0000000, 0x3F, 0, PutBitBranch },
+        { "BBR4", 0x0000000, 0x4F, 0, PutBitBranch },
+        { "BBR5", 0x0000000, 0x5F, 0, PutBitBranch },
+        { "BBR6", 0x0000000, 0x6F, 0, PutBitBranch },
+        { "BBR7", 0x0000000, 0x7F, 0, PutBitBranch },
+        { "BBS0", 0x0000000, 0x8F, 0, PutBitBranch },
+        { "BBS1", 0x0000000, 0x9F, 0, PutBitBranch },
+        { "BBS2", 0x0000000, 0xAF, 0, PutBitBranch },
+        { "BBS3", 0x0000000, 0xBF, 0, PutBitBranch },
+        { "BBS4", 0x0000000, 0xCF, 0, PutBitBranch },
+        { "BBS5", 0x0000000, 0xDF, 0, PutBitBranch },
+        { "BBS6", 0x0000000, 0xEF, 0, PutBitBranch },
+        { "BBS7", 0x0000000, 0xFF, 0, PutBitBranch },
+        { "BCC",  0x0020000, 0x90, 0, PutPCRel8 },
+        { "BCS",  0x0020000, 0xb0, 0, PutPCRel8 },
+        { "BEQ",  0x0020000, 0xf0, 0, PutPCRel8 },
+        { "BIT",  0x0A0006C, 0x00, 2, PutAll },
+        { "BMI",  0x0020000, 0x30, 0, PutPCRel8 },
+        { "BNE",  0x0020000, 0xd0, 0, PutPCRel8 },
+        { "BPL",  0x0020000, 0x10, 0, PutPCRel8 },
+        { "BRA",  0x0020000, 0x80, 0, PutPCRel8 },
+        { "BRK",  0x0800005, 0x00, 6, PutAll },
+        { "BVC",  0x0020000, 0x50, 0, PutPCRel8 },
+        { "BVS",  0x0020000, 0x70, 0, PutPCRel8 },
+        { "CLC",  0x0000001, 0x18, 0, PutAll },
+        { "CLD",  0x0000001, 0xd8, 0, PutAll },
+        { "CLI",  0x0000001, 0x58, 0, PutAll },
+        { "CLV",  0x0000001, 0xb8, 0, PutAll },
+        { "CMP",  0x30b8f6fc, 0xc0, 0, PutAll },
+        { "CPX",  0x080000C, 0xe0, 1, PutAll },
+        { "CPY",  0x080000C, 0xc0, 1, PutAll },
+        { "DEA",  0x0000001, 0x00, 3, PutAll },   /* == DEC */
+        { "DEC",  0x000006F, 0x00, 3, PutAll },
+        { "DEX",  0x0000001, 0xca, 0, PutAll },
+        { "DEY",  0x0000001, 0x88, 0, PutAll },
+        { "DIV",  0x000006c, 0x4f, 15, PutAll },
+        { "ENT",  0x0000001, 0x22, 0, PutAll },
+        { "EOR",  0x30b8f6fc, 0x40, 0, PutAll },
+        { "INA",  0x0000001, 0x00, 4, PutAll },   /* == INC */
+        { "INC",  0x000006f, 0x00, 4, PutAll },
+        { "INX",  0x0000001, 0xe8, 0, PutAll },
+        { "INY",  0x0000001, 0xc8, 0, PutAll },
+        { "JMP",  0x0010808, 0x4c, 6, PutAll },
+        { "JSR",  0x0010018, 0x20, 7, PutJSR816 },
+        { "LDA",  0x30b8f6fc, 0xa0, 0, PutAll },
+        { "LDX",  0x080030C, 0xa2, 1, PutAll },
+        { "LDY",  0x080006C, 0xa0, 1, PutAll },
+        { "LSR",  0x000006F, 0x42, 1, PutAll },
+        { "MMU",  0x0000808, 0xef, 0, PutMMUel02 },
+        { "MUL",  0x000006c, 0x0f, 15, PutAll },
+        { "NOP",  0x0000001, 0xea, 0, PutAll },
+        { "NXA",  0x0000001, 0x42, 0, PutAll },
+        { "NXT",  0x0000001, 0x02, 0, PutAll },
+        { "ORA",  0x30b8f6fc, 0x00, 0, PutAll },
+        { "PEA",  0x0000008, 0xf4, 6, PutAll },
+        { "PEI",  0x0000400, 0xd4, 1, PutAll },
+        { "PER",  0x0040000, 0x62, 0, PutPCRel16 },
+        { "PHA",  0x0000001, 0x48, 0, PutAll },
+        { "PHD",  0x0000001, 0xdf, 0, PutAll },
+        { "PHP",  0x0000001, 0x08, 0, PutAll },
+        { "PHX",  0x0000001, 0xda, 0, PutAll },
+        { "PHY",  0x0000001, 0x5a, 0, PutAll },
+        { "PLA",  0x0000001, 0x68, 0, PutAll },
+        { "PLD",  0x0000001, 0xcf, 0, PutAll },
+        { "PLP",  0x0000001, 0x28, 0, PutAll },
+        { "PLX",  0x0000001, 0xfa, 0, PutAll },
+        { "PLY",  0x0000001, 0x7a, 0, PutAll },
+        { "REA",  0x0000008, 0x44, 0, PutAll },
+        { "REI",  0x0000400, 0x54, 0, PutAll },
+        { "REP",  0x0800000, 0xc2, 1, PutREP },
+        { "RER",  0x0020000, 0x82, 0, PutAll },
+        { "RHA",  0x0000001, 0x4b, 0, PutAll },
+        { "RHI",  0x0000001, 0x0b, 0, PutAll },
+        { "RHX",  0x0000001, 0x1b, 0, PutAll },
+        { "RHY",  0x0000001, 0x5b, 0, PutAll },
+        { "RLA",  0x0000001, 0x6b, 0, PutAll },
+        { "RLI",  0x0000001, 0x2b, 0, PutAll },
+        { "RLX",  0x0000001, 0x3b, 0, PutAll },
+        { "RLY",  0x0000001, 0x7b, 0, PutAll },
+        { "RMB0", 0x0000004, 0x07, 1, PutAll },
+        { "RMB1", 0x0000004, 0x17, 1, PutAll },
+        { "RMB2", 0x0000004, 0x27, 1, PutAll },
+        { "RMB3", 0x0000004, 0x37, 1, PutAll },
+        { "RMB4", 0x0000004, 0x47, 1, PutAll },
+        { "RMB5", 0x0000004, 0x57, 1, PutAll },
+        { "RMB6", 0x0000004, 0x67, 1, PutAll },
+        { "RMB7", 0x0000004, 0x77, 1, PutAll },
+        { "ROL",  0x000006F, 0x22, 1, PutAll },
+        { "ROR",  0x000006F, 0x62, 1, PutAll },
+        { "RTI",  0x0000001, 0x40, 0, PutAll },
+        { "RTS",  0x0000001, 0x60, 0, PutAll },
+        { "SBC",  0x30b8f6fc, 0xe0, 0, PutAll },
+        { "SEA",  0x0000001, 0x9f, 0, PutAll },
+        { "SEC",  0x0000001, 0x38, 0, PutAll },
+        { "SED",  0x0000001, 0xf8, 0, PutAll },
+        { "SEI",  0x0000001, 0x78, 0, PutAll },
+        { "SEP",  0x0800008, 0xe2, 1, PutSEP },
+        { "SMB0", 0x0000004, 0x87, 1, PutAll },
+        { "SMB1", 0x0000004, 0x97, 1, PutAll },
+        { "SMB2", 0x0000004, 0xA7, 1, PutAll },
+        { "SMB3", 0x0000004, 0xB7, 1, PutAll },
+        { "SMB4", 0x0000004, 0xC7, 1, PutAll },
+        { "SMB5", 0x0000004, 0xD7, 1, PutAll },
+        { "SMB6", 0x0000004, 0xE7, 1, PutAll },
+        { "SMB7", 0x0000004, 0xF7, 1, PutAll },
+        { "STA",  0x3018f6fc, 0x80, 0, PutAll },
+        { "STX",  0x000010c, 0x82, 1, PutAll },
+        { "STY",  0x000002c, 0x80, 1, PutAll },
+        { "STZ",  0x000006c, 0x04, 5, PutAll },
+        { "TAD",  0x0000001, 0xbf, 0, PutAll },
+        { "TAX",  0x0000001, 0xaa, 0, PutAll },
+        { "TAY",  0x0000001, 0xa8, 0, PutAll },
+        { "TDA",  0x0000001, 0xaf, 0, PutAll },
+        { "TIX",  0x0000001, 0xdc, 0, PutAll },
+        { "TRB",  0x000000c, 0x10, 1, PutAll },
+        { "TRX",  0x0000001, 0xab, 0, PutAll },
+        { "TSB",  0x000000c, 0x00, 1, PutAll },
+        { "TSX",  0x0000001, 0xba, 0, PutAll },
+        { "TXA",  0x0000001, 0x8a, 0, PutAll },
+        { "TXI",  0x0000001, 0x5c, 0, PutAll },
+        { "TXR",  0x0000001, 0x8b, 0, PutAll },
+        { "TXS",  0x0000001, 0x9a, 0, PutAll },
+        { "TXY",  0x0000001, 0x9b, 0, PutAll },
+        { "TYA",  0x0000001, 0x98, 0, PutAll },
+        { "TYX",  0x0000001, 0xbb, 0, PutAll },
+        { "WAI",  0x0000001, 0xcb, 0, PutAll },
+        { "XBA",  0x0000001, 0xeb, 0, PutAll },
+        { "XCE",  0x0000001, 0xfb, 0, PutAll },
+        { "ZEA",  0x0000001, 0x8f, 0, PutAll },
+/* END SORTED.SH */
+    }
+};
+
 /* An array with instruction tables */
 static const InsTable* InsTabs[CPU_COUNT] = {
     (const InsTable*) &InsTabNone,
@@ -1614,6 +1764,7 @@ static const InsTable* InsTabs[CPU_COUNT] = {
     (const InsTable*) &InsTab6502DTV,
     (const InsTable*) &InsTab65SC02,        /* original CMOS */
     (const InsTable*) &InsTab65C02,         /* CMOS with Rockwell extensions */
+    (const InsTable*) &InsTab65el02,
     (const InsTable*) &InsTab65816,
     (const InsTable*) &InsTabSweet16,
     (const InsTable*) &InsTabHuC6280,
@@ -1770,11 +1921,13 @@ unsigned char ExtBytes[AM65I_COUNT] = {
     2,          /* Blockmove (65816) */
     7,          /* Block transfer (HuC6280) */
     2,          /* Absolute Indirect long */
-    2,          /* Immidiate word */
+    2,          /* Immediate word */
     2,          /* Direct, Relative short */
     1,          /* Special Page */
     1,          /* [Direct],z */
     0,          /* Q */
+    1,          /* r,r */
+    1,          /* (r,r),y*/
 };
 
 /* Table that encodes the additional bytes for each SWEET16 instruction */
@@ -1864,8 +2017,10 @@ static int EvalEA (const InsDesc* Ins, EffAddr* A)
         ED_Done (&ED);
     }
 
+
     /* Check if we have any adressing modes left */
     if (A->AddrModeSet == 0) {
+        printf("Instruction: `%s`\n", Ins->Mnemonic);
         Error ("Illegal addressing mode");
         return 0;
     }
@@ -1928,7 +2083,7 @@ static void EmitCode (EffAddr* A)
             break;
 
         case 2:
-            if (CPU == CPU_65816 && (A->AddrModeBit & (AM65_ABS | AM65_ABS_X | AM65_ABS_Y | AM65_ABS_X_IND))) {
+            if ((CPU == CPU_65816 || CPU == CPU_65EL02) && (A->AddrModeBit & (AM65_ABS | AM65_ABS_X | AM65_ABS_Y | AM65_ABS_X_IND))) {
                 /* This is a 16 bit mode that uses an address. If in 65816,
                 ** mode, force this address into 16 bit range to allow
                 ** addressing inside a 64K segment.
@@ -2158,7 +2313,7 @@ static void PutSEP (const InsDesc* Ins)
     long Val = PutImmed8 (Ins);
 
     /* We track the status only for the 816 CPU and in smart mode */
-    if (CPU == CPU_65816 && SmartMode) {
+    if ((CPU == CPU_65816 || CPU == CPU_65EL02) && SmartMode) {
 
         /* Check the range for Val. */
         if (Val < 0) {
@@ -2413,6 +2568,28 @@ static void PutAll (const InsDesc* Ins)
     if (EvalEA (Ins, &A)) {
         /* No error, output code */
         EmitCode (&A);
+    }
+}
+
+
+
+static void PutMMUel02 (const InsDesc* Ins)
+/* Handle all other instructions */
+{
+    EffAddr A;
+
+    /* Evaluate the addressing mode used */
+    if (EvalEA (Ins, &A)) {
+        // if (A.AddrMode == AM65_ABS)
+            /* No error, output code */
+            EmitCode (&A);
+        // Emit0 (A.Opcode);
+        // EmitByte (GenByteExpr (A.Expr));
+        return;
+    }
+    else
+    {
+        Internal ("Invalid addressing mode 0x%02x", A.AddrMode);
     }
 }
 

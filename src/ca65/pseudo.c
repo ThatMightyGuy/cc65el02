@@ -1567,6 +1567,14 @@ static void DoPC02 (void)
 
 
 
+static void DoPEL02 (void)
+/* Switch to 65el02 CPU */
+{
+    SetCPU (CPU_65EL02);
+}
+
+
+
 static void DoPWC02 (void)
 /* Switch to W65C02 CPU */
 {
@@ -2220,6 +2228,7 @@ static CtrlDesc CtrlCmdTab [] = {
     { ccNone,           DoPageLength    },      /* .PAGELEN, .PAGELENGTH */
     { ccNone,           DoUnexpected    },      /* .PARAMCOUNT */
     { ccNone,           DoPC02          },      /* .PC02 */
+    { ccNone,           DoPEL02         },      /* .PEL02 */
     { ccNone,           DoPCE02         },      /* .PCE02 */
     { ccNone,           DoPDTV          },      /* .PDTV */
     { ccNone,           DoPM740         },      /* .PM740 */

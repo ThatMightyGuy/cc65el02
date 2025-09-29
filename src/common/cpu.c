@@ -60,6 +60,7 @@ const char* CPUNames[CPU_COUNT] = {
     "6502DTV",
     "65SC02",   /* the original CMOS instruction set */
     "65C02",    /* CMOS with Rockwell extensions */
+    "65EL02",
     "65816",
     "sweet16",
     "huc6280",
@@ -86,6 +87,8 @@ const unsigned CPUIsets[CPU_COUNT] = {
     CPU_ISET_65SC02  | CPU_ISET_6502,
     /* CPU_65C02 */
     CPU_ISET_65C02   | CPU_ISET_6502 | CPU_ISET_65SC02,
+    /* CPU_65EL02 */
+    CPU_ISET_65CE02  | CPU_ISET_6502 | CPU_ISET_65SC02 | CPU_ISET_65C02                                   | CPU_ISET_65EL02,
     /* CPU_65816. 65816 has wai/stp and NO bit manipulation. */
     CPU_ISET_65816   | CPU_ISET_6502 | CPU_ISET_65SC02,
     /* CPU_SWEET16 */
@@ -165,6 +168,14 @@ const unsigned CPUIsets[CPU_COUNT] = {
      CAP_BIT (CAP_CPU_HAS_INA)          |       \
      CAP_BIT (CAP_CPU_HAS_PUSHXY)       |       \
      CAP_BIT (CAP_CPU_HAS_STZ))
+#define CAP_65EL02                              \
+    (CAP_BIT (CAP_CPU_HAS_BITIMM)       |       \
+     CAP_BIT (CAP_CPU_HAS_BRA8)         |       \
+     CAP_BIT (CAP_CPU_HAS_INA)          |       \
+     CAP_BIT (CAP_CPU_HAS_PUSHXY)       |       \
+     CAP_BIT (CAP_CPU_HAS_ZPIND)        |       \
+     CAP_BIT (CAP_CPU_HAS_STZ)          |       \
+     CAP_BIT (CAP_CPU_HAS_RSTACK))
 
 /* Table containing one capability entry per CPU */
 static const uint32_t CPUCaps[CPU_COUNT] = {
@@ -174,6 +185,7 @@ static const uint32_t CPUCaps[CPU_COUNT] = {
     CAP_6502DTV,                /* CPU_6502DTV */
     CAP_65SC02,                 /* CPU_65SC02 */
     CAP_65C02,                  /* CPU_65C02 */
+    CAP_65EL02,                 /* CPU_65EL02 */
     CAP_65816,                  /* CPU_65816 */
     CAP_SWEET16,                /* CPU_SWEET16 */
     CAP_HUC6280,                /* CPU_HUC6280 */
@@ -223,7 +235,7 @@ int ValidAddrSizeForCPU (unsigned char AddrSize)
     }
 }
 
-
+#include <stdio.h>
 
 cpu_t FindCPU (const char* Name)
 /* Find a CPU by name and return the target id. CPU_UNKNOWN is returned if

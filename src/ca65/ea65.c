@@ -143,7 +143,7 @@ void GetEA (EffAddr* A)
             } else if (CurTok.Tok == TOK_S) {
                 /* (rel,s),y */
                 NextTok ();
-                A->AddrModeSet = AM65_STACK_REL_IND_Y;
+                A->AddrModeSet = AM65_STACK_REL_IND_Y | AM65_R_STACK_REL_IND_Y;
                 if (!Consume (IndirectLeave, IndirectExpect) ||
                     !ConsumeComma ()                         ||
                     !Consume (TOK_Y, "Expected `Y'")) {
@@ -187,7 +187,7 @@ void GetEA (EffAddr* A)
                         break;
 
                     default:
-                        A->AddrModeSet = AM65_ABS_IND | AM65_ABS_IND_LONG | AM65_DIR_IND;
+                        A->AddrModeSet = AM65_ABS_IND | AM65_DIR_IND | AM65_ABS_IND_LONG;
                         break;
                 }
             }
@@ -250,7 +250,7 @@ void GetEA (EffAddr* A)
                     break;
 
                 case TOK_S:
-                    A->AddrModeSet = AM65_STACK_REL;
+                    A->AddrModeSet = AM65_STACK_REL | AM65_R_STACK_REL;
                     NextTok ();
                     break;
 

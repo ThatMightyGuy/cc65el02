@@ -280,6 +280,7 @@ struct DotKeyword {
     { ".PC02",          TOK_PC02                },
     { ".PCE02",         TOK_PCE02               },
     { ".PDTV",          TOK_PDTV                },
+    { ".PEL02",         TOK_PEL02               },
     { ".PM740",         TOK_PM740               },
     { ".POPCHARMAP",    TOK_POPCHARMAP          },
     { ".POPCPU",        TOK_POPCPU              },
